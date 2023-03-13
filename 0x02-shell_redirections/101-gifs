@@ -1,10 +1,2 @@
 #!/bin/bash
-shopt -s globstar nullglob
-
-for file in **/*.gif; do
-  if [[ -f "$file" ]]; then
-    echo "$(printf '%s\n' "${file%.*}" | LC_COLLATE=C sort)"
-  fi
-done
-
-echo
+find . -type f -iname '*.gif' -printf "%f\0" | sort -z -f | sed 's/\.gif$//' && printf "\n"o
