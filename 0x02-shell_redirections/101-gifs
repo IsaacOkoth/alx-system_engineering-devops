@@ -1,0 +1,10 @@
+#!/bin/bash
+shopt -s globstar nullglob
+
+for file in **/*.gif; do
+  if [[ -f "$file" ]]; then
+    echo "$(printf '%s\n' "${file%.*}" | LC_COLLATE=C sort)"
+  fi
+done
+
+echo
